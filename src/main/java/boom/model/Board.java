@@ -26,6 +26,16 @@ public class Board {
         }
     }
 
+    public int getHeight(){
+        return height;
+    }
 
+    public int getWidth(){
+        return width;
+    }
+
+    public Cell getCell(int i,int j){
+        return board[i][j];
+    }
 
 }

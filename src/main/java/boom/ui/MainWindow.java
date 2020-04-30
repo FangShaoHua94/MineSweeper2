@@ -37,7 +37,11 @@ public class MainWindow extends UiPart<Stage>{
     }
 
     public void fillInnerParts(){
+        displayPanel = new DisplayPanel();
+        displayPanelHolder.getChildren().add(displayPanel.getRoot());
 
+        boardPane = new BoardPane(logic.getBoard());
+        boardPaneHolder.getChildren().add(boardPane.getRoot());
     }
 
 }

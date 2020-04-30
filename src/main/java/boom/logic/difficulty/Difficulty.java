@@ -12,4 +12,16 @@ public abstract class Difficulty {
         this.mineCount=mineCount;
     }
 
+    public int getHeight(){
+        return height;
+    }
+
+    public int getWidth(){
+        return width;
+    }
+
+    public int getMineCount(){
+        return mineCount;
+    }
+
 }

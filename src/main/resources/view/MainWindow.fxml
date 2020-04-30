@@ -13,7 +13,7 @@
         <Scene>
          <VBox prefHeight="400.0" prefWidth="400.0">
             <children>
-               <MenuBar>
+               <MenuBar fx:id="menuBar">
                  <menus>
                    <Menu mnemonicParsing="false" text="File">
                      <items>
@@ -32,8 +32,8 @@
                    </Menu>
                  </menus>
                </MenuBar>
-               <StackPane maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="400.0" />
-               <StackPane prefHeight="373.0" prefWidth="400.0" />
+               <StackPane fx:id="displayPanelHolder" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="400.0" />
+               <StackPane fx:id="boardPaneHolder" prefHeight="373.0" prefWidth="400.0" />
             </children>
          </VBox>
         </Scene>

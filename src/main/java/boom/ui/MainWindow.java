@@ -1,6 +1,11 @@
 package boom.ui;
 
+import javafx.fxml.FXML;
+
 import boom.logic.Logic;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class MainWindow extends UiPart<Stage>{
@@ -9,6 +14,18 @@ public class MainWindow extends UiPart<Stage>{
 
     private Logic logic;
     private Stage primaryStage;
+
+    private DisplayPanel displayPanel;
+    private BoardPane boardPane;
+
+    @FXML
+    private StackPane displayPanelHolder;
+
+    @FXML
+    private StackPane boardPaneHolder;
+
+    @FXML
+    private MenuBar menuBar;
 
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);

@@ -54,6 +54,20 @@ public class BoardPane extends UiPart<Region> {
         }
     }
 
+    private void gameOver(Tile tile){
+        for(int i=0;i<board.getHeight();i++){
+            for(int j=0;j<board.getWidth();j++){
+                tiles[i][j].disableButton();
+                if(tiles[i][j].getCell().isMineTile()){
+                    if(tiles[i][j]==tile){
+                        continue;
+                    }
+                    tiles[i][j].revealMine();
+                }
+            }
+        }
+    }
+
     class Tile extends UiPart<Region> {
 
         private static final String FXML = "Tile.fxml";
@@ -114,7 +128,11 @@ public class BoardPane extends UiPart<Region> {
             if(cell.isRevealed()){
                 return;
             }
-            button.setDisable(true);
+            disableButton();
+            if(cell.isMineTile()){
+                displayRedMine();
+                gameOver(this);
+            }
             cell.reveal();
             board.setCellValue(cell);
             revealTile();
@@ -124,7 +142,7 @@ public class BoardPane extends UiPart<Region> {
             switch (cell.getValue()) {
             case 0:
                 revealNeighbourTile(this);
-                break;
+                return;
             case 1:
                 label.setStyle("-fx-text-fill: blue");
                 break;
@@ -153,6 +171,27 @@ public class BoardPane extends UiPart<Region> {
                 label.setStyle("-fx-background-color: red");
             }
             label.setText(""+cell.getValue());
+        }
+
+        public void disableButton(){
+            button.setDisable(true);
+        }
+
+        public void revealMine(){
+            ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/images/mine.png")));
+            setImage(image);
+        }
+
+        private void displayRedMine(){
+            ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/images/redMine.jpg")));
+            setImage(image);
+        }
+
+        private void setImage(ImageView image){
+            image.setPreserveRatio(true);
+            image.fitHeightProperty().bind(label.widthProperty());
+            image.fitHeightProperty().bind(label.heightProperty());
+            label.setGraphic(image);
         }
 
     }

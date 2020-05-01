@@ -175,19 +175,20 @@ public class BoardPane extends UiPart<Region> {
 
         public void disableButton(){
             button.setDisable(true);
+            button.setVisible(false);
         }
 
         public void revealMine(){
             ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/images/mine.png")));
-            setImage(image);
+            setLabelImage(image);
         }
 
         private void displayRedMine(){
             ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/images/redMine.jpg")));
-            setImage(image);
+            setLabelImage(image);
         }
 
-        private void setImage(ImageView image){
+        private void setLabelImage(ImageView image){
             image.setPreserveRatio(true);
             image.fitHeightProperty().bind(label.widthProperty());
             image.fitHeightProperty().bind(label.heightProperty());

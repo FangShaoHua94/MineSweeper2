@@ -9,4 +9,8 @@ public class DisplayPanel extends UiPart<Region>{
     public DisplayPanel(){
         super(FXML);
     }
+
+
+
+
 }

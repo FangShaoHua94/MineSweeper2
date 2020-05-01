@@ -30,31 +30,30 @@ public class BoardPane extends UiPart<Region> {
     private void setUpBoard(){
         for(int i=0;i<board.getHeight();i++){
             for(int j=0;j<board.getWidth();j++){
-                gridPane.add(new Tile(board.getCell(i,j)),i,j);
+                gridPane.add(new Tile(board.getCell(i,j)).getRoot(),i,j);
             }
         }
     }
 
-    class Tile extends StackPane {
+    class Tile extends UiPart<Region> {
 
-        private static final int DIMENSION = 25;
+        private static final String FXML = "Tile.fxml";
 
         private Cell cell;
+
+        @FXML
         private Button button;
+
+        @FXML
         private Label label;
 
         public Tile(Cell cell){
+            super(FXML);
             this.cell=cell;
-            button = new Button();
-            label = new Label();
             setUpButton();
-            setUpLabel();
-            getChildren().addAll(label,button);
         }
 
         private void setUpButton(){
-            button.setMinSize(DIMENSION,DIMENSION);
-            button.setPrefSize(DIMENSION,DIMENSION);
             button.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> {
                 if(cell.isRevealed()){
                     return;
@@ -73,10 +72,6 @@ public class BoardPane extends UiPart<Region> {
             });
         }
 
-        private void setUpLabel(){
-            label.setMinSize(DIMENSION,DIMENSION);
-            label.setPrefSize(DIMENSION,DIMENSION);
-        }
 
     }
 

@@ -1,0 +1,19 @@
+#smiley{
+    -fx-border-width: 5;
+    -fx-border-color: black;
+}
+
+
+#timeDisplay{
+     -fx-border-width: 2;
+     -fx-border-color: black;
+     -fx-font-size: 18;
+     -fx-background-color: white;
+ }
+
+#mineCountDisplay{
+    -fx-border-width: 2;
+    -fx-border-color: black;
+    -fx-font-size: 18;
+    -fx-background-color: white;
+}

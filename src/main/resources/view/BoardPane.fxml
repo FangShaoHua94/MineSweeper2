@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 
-<GridPane fx:id="gridPane" translateX="1.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="gridPane" gridLinesVisible="true" translateX="1.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <rowConstraints>
       <RowConstraints minHeight="25.0" prefHeight="25.0" />
    </rowConstraints>

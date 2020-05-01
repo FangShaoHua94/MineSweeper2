@@ -6,6 +6,8 @@ import boom.model.Board;
 import boom.model.Cell;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -64,7 +66,6 @@ public class BoardPane extends UiPart<Region> {
                     reveal();
                 }
             });
-//            button.setDisable(true);
         }
 
         private void setFlag(){
@@ -73,9 +74,13 @@ public class BoardPane extends UiPart<Region> {
             }
             cell.setFlag();
             if(cell.isFlagged()){
-
+                ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/images/flag.png")));
+                image.setPreserveRatio(true);
+                image.fitHeightProperty().bind(button.widthProperty());
+                image.fitHeightProperty().bind(button.heightProperty());
+                button.setGraphic(image);
             }else{
-
+                button.setGraphic(null);
             }
         }
 
@@ -97,6 +102,7 @@ public class BoardPane extends UiPart<Region> {
         private void displayValue(){
             switch (cell.getValue()) {
             case 0:
+                // todo recursive
 //                revealNeighbourTile(this);
                 break;
             case 1:

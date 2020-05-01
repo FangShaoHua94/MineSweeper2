@@ -2,10 +2,25 @@ package boom.model;
 
 public class Cell {
 
+    private final int rowIndex;
+    private final int colIndex;
     private int value;
     private boolean isReveal=false;
     private boolean isFlag=false;
     private boolean isMine=false;
+
+    public Cell(int rowIndex,int colIndex){
+        this.rowIndex=rowIndex;
+        this.colIndex=colIndex;
+    }
+
+    public int getRowIndex(){
+        return rowIndex;
+    }
+
+    public int getColIndex(){
+        return colIndex;
+    }
 
     public void setValue(int value){
         this.value=value;

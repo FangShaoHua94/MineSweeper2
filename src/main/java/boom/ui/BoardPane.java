@@ -10,11 +10,11 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 
 public class BoardPane extends UiPart<Region> {
 
     private static final String FXML = "BoardPane.fxml";
+    private static boolean isFirstClick=false;
 
     private Board board;
 
@@ -30,7 +30,7 @@ public class BoardPane extends UiPart<Region> {
     private void setUpBoard(){
         for(int i=0;i<board.getHeight();i++){
             for(int j=0;j<board.getWidth();j++){
-                gridPane.add(new Tile(board.getCell(i,j)).getRoot(),i,j);
+                gridPane.add(new Tile(board.getCell(i,j)).getRoot(),j,i);
             }
         }
     }
@@ -55,24 +55,45 @@ public class BoardPane extends UiPart<Region> {
 
         private void setUpButton(){
             button.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> {
-                if(cell.isRevealed()){
-                    return;
-                }
                 if (e.getButton() == MouseButton.SECONDARY) {
-                    cell.setFlag();
+                    setFlag();
                 }
             });
             button.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> {
-                if(cell.isRevealed()){
-                    return;
-                }
                 if (e.getButton() == MouseButton.PRIMARY) {
-                    cell.reveal();
+                    reveal();
                 }
             });
+//            button.setDisable(true);
         }
 
+        private void setFlag(){
+            if(cell.isRevealed()){
+                return;
+            }
+            cell.setFlag();
+            if(cell.isFlagged()){
+
+            }else{
+
+            }
+        }
+
+        private void reveal(){
+            if(!isFirstClick){
+                isFirstClick=true;
+                board.setMine(cell);
+                board.print();
+            }
+            if(cell.isRevealed()){
+                return;
+            }
+            button.setDisable(true);
+            cell.reveal();
+            board.setCellValue(cell);
+            label.setText(""+cell.getValue());
+            ;
+        }
 
     }
-
 }

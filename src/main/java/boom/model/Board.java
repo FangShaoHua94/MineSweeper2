@@ -70,9 +70,6 @@ public class Board {
         cell.setValue(count);
     }
 
-//    public void setCellValue(Cell cell){
-//        cell.setValue(10*cell.getRowIndex()+cell.getColIndex());
-//    }
 
     public void print(){
         for(int i=0;i<height;i++){

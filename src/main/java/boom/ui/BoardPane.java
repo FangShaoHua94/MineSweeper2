@@ -91,8 +91,42 @@ public class BoardPane extends UiPart<Region> {
             button.setDisable(true);
             cell.reveal();
             board.setCellValue(cell);
+            displayValue();
+        }
+
+        private void displayValue(){
+            switch (cell.getValue()) {
+            case 0:
+//                revealNeighbourTile(this);
+                break;
+            case 1:
+                label.setStyle("-fx-text-fill: blue");
+                break;
+            case 2:
+                label.setStyle("-fx-text-fill: green");
+                break;
+            case 3:
+                label.setStyle("-fx-text-fill: red");
+                break;
+            case 4:
+                label.setStyle("-fx-text-fill: darkblue");
+                break;
+            case 5:
+                label.setStyle("-fx-text-fill: brown");
+                break;
+            case 6:
+                label.setStyle("-fx-text-fill: darkviolet");
+                break;
+            case 7:
+                label.setStyle("-fx-text-fill: deeppink");
+                break;
+            case 8:
+                label.setStyle("-fx-text-fill: tomato");
+                break;
+            default:
+                label.setStyle("-fx-background-color: red");
+            }
             label.setText(""+cell.getValue());
-            ;
         }
 
     }

@@ -8,10 +8,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="400.0" minWidth="400.0" title="boom" type="Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="482.0" minWidth="408.0" title="boom" type="Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <scene>
         <Scene>
-         <VBox prefHeight="400.0" prefWidth="400.0">
+         <VBox minHeight="482.0" minWidth="408.0" prefHeight="482.0" prefWidth="408.0">
             <children>
                <MenuBar fx:id="menuBar">
                  <menus>

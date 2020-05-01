@@ -19,6 +19,7 @@ public class BoardPane extends UiPart<Region> {
     private static boolean isFirstClick=false;
 
     private Board board;
+    private Tile[][] tiles;
 
     @FXML
     private GridPane gridPane;
@@ -30,9 +31,25 @@ public class BoardPane extends UiPart<Region> {
     }
 
     private void setUpBoard(){
+        tiles= new Tile[board.getHeight()][board.getWidth()];
         for(int i=0;i<board.getHeight();i++){
             for(int j=0;j<board.getWidth();j++){
-                gridPane.add(new Tile(board.getCell(i,j)).getRoot(),j,i);
+                Tile tile = new Tile(board.getCell(i,j));
+                gridPane.add(tile.getRoot(),j,i);
+                tiles[i][j]=tile;
+            }
+        }
+    }
+
+    private void revealNeighbourTile(Tile tile){
+        Cell cell=tile.getCell();
+        for (int i = cell.getRowIndex() - 1; i <= cell.getRowIndex() + 1; i++) {
+            for (int j = cell.getColIndex() - 1; j <= cell.getColIndex() + 1; j++) {
+                if (i < 0 || i >= board.getHeight() || j < 0 || j >= board.getWidth()
+                        || tiles[i][j].equals(tile) || board.getCell(i,j).isRevealed()) {
+                    continue;
+                }
+                tiles[i][j].reveal();
             }
         }
     }
@@ -68,6 +85,10 @@ public class BoardPane extends UiPart<Region> {
             });
         }
 
+        public Cell getCell(){
+            return cell;
+        }
+
         private void setFlag(){
             if(cell.isRevealed()){
                 return;
@@ -96,14 +117,13 @@ public class BoardPane extends UiPart<Region> {
             button.setDisable(true);
             cell.reveal();
             board.setCellValue(cell);
-            displayValue();
+            revealTile();
         }
 
-        private void displayValue(){
+        private void revealTile(){
             switch (cell.getValue()) {
             case 0:
-                // todo recursive
-//                revealNeighbourTile(this);
+                revealNeighbourTile(this);
                 break;
             case 1:
                 label.setStyle("-fx-text-fill: blue");
